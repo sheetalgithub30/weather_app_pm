@@ -96,11 +96,10 @@ function App() {
 
   }
 
-  console.log("data in uo",data)
 
 
   return (
-    <>
+    <div className="border-b-2 border-gray-500">
       <div className="bg-blue-600">
         <h1 className="text-center text-white text-xl p-7 font-medium">
           Weather App
@@ -110,7 +109,7 @@ function App() {
       <div className="flex justify-center">
         <div className="flex flex-col items-center w-[20%]">
           <button
-            className="bg-blue-600 p-4 m-2  text-white rounded-xl w-[70%]"
+            className="bg-blue-600 p-4 m-2  text-white rounded-xl w-[70%] "
             onClick={getWeather}
           >
             Get Weather
@@ -132,8 +131,8 @@ function App() {
           </div>
         </div>
         <div className="border-2 border-black h-[80vh]"></div>
-        <div className="w-[88%] mx-20 my-2">
-          <div className="flex justify-end">
+        <div className="w-[88%] mx-20 my-2 max-sm:mx-10">
+          <div className="flex justify-end max-sm:justify-center">
             <input
               type="text"
               placeholder="City Name"
@@ -143,7 +142,7 @@ function App() {
             ></input>
             <button 
             onClick={setBackground}
-            className="bg-blue-600 p-4  text-white  w-[8%] flex justify-center">
+            className="bg-blue-600 text-white  w-[8%] flex justify-center items-center">
               <IoSearch className="text-2xl" />
             </button>
           </div>
@@ -159,13 +158,13 @@ function App() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
 export default App;
 
-function New({ data, setData, cityName, setCityData, citydata,search }) {
+function New({ data, setData,setCityData, citydata}) {
   function del(index, city) {
     let new_arr = [...data];
     setData(
@@ -197,13 +196,16 @@ function New({ data, setData, cityName, setCityData, citydata,search }) {
               <th className="border border-slate-700">Temperature</th>
               <th className="border border-slate-700">Pressure</th>
               <th className="border border-slate-700">Data age(hrs)</th>
-              <th className="border border-slate-700 py-5">
+              <th className="border border-slate-700 py-5 max-md:py-2">
                 <MdDeleteForever />
               </th>
             </tr>
           </thead>
 
           {data.map((e, index) => {
+            let date = new Date(e.date_and_time);
+            let duration = Date.now() - date;
+           let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
             return (
               <tbody key={index}>
                 <tr className={`${e.search ? "bg-yellow-400" : ""}`}>
@@ -215,8 +217,8 @@ function New({ data, setData, cityName, setCityData, citydata,search }) {
                   <td className="border border-slate-700">
                     {e.pressure_in_hPa}
                   </td>
-                  <td className="border border-slate-700">{e.date_and_time}</td>
-                  <td className="border border-slate-700 py-5">
+                  <td className="border border-slate-700">{hours}</td>
+                  <td className="border border-slate-700 py-5 max-md:py-2">
                     <button onClick={() => del(index, e.cityName)}>
                       <u className="text-red-700">
                         <MdDeleteForever />
@@ -232,59 +234,6 @@ function New({ data, setData, cityName, setCityData, citydata,search }) {
         {data.length == 0 && (
           <h1 className="text-2xl font-bold text-center">No Data</h1>
         )}
-        {/*         
-          <div className="mt-5 p-2 bg-blue-900 border-2 border-black">
-            <h2 className="text-center text-white my-2">Fill below form for New Entry</h2>
-            <div className="flex justify-around items-center">
-              <form onSubmit={save} id="new">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  value={name}
-                  onChange={(e) => setName(e.currentTarget.value)}
-                  required
-                ></input>
-
-                <input
-                  type="date"
-                  value={dob}
-                  onChange={(e) => {
-                    handle(e);
-                  }}
-                  required
-                ></input>
-
-                <input
-                  type="number"
-                  placeholder="Aadhar Number"
-                  value={aadhar}
-                  onChange={(e) => setAadhar(e.currentTarget.value)}
-                  min="100000000000"
-                  max="999999999999"
-                  required
-                ></input>
-
-                <input
-                  type="number"
-                  placeholder="Mobile Number"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.currentTarget.value)}
-                  min="1000000000"
-                  max="9999999999"
-                  required
-                ></input>
-
-                <input
-                  type="number"
-                  placeholder="Age"
-                  value={age}
-                  disabled
-                ></input>
-
-                <button type="submit"  placeholder="submit"><u className="text-green-400">Submit</u></button>
-              </form>
-            </div> */}
-        {/* </div> */}
       </div>
     </div>
   );
