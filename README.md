@@ -41,6 +41,7 @@
    
 
 ## 📌<span style="color:#29c4f6"> Working:
+
 1. State Management:
 citydata: Stores the list of cities and their status.
 data: Stores the fetched weather data.
@@ -54,5 +55,14 @@ The getWeather function finds the first city that hasn’t been fetched yet, set
 The setBackground function highlights the city that matches the search input by setting its search property to true.
 5. Timeout for Search Highlight:
 A useEffect hook with a timeout is used to reset the search highlight after 3 seconds.
+
+
+## 📌<span style="color:#29c4f6"> Installation:
+
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Install dependencies using npm install.
+4. Start the development server using npm run dev.
+5. Access the app in your browser at http://localhost:3000.
 
 This project integrates of various React features and external APIs to create a functional and interactive application.
