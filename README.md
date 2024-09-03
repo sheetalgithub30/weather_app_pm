@@ -2,6 +2,8 @@
 
 ## 📌<span style="color:#29c4f6"> LIVE VIEW
 
+###   [https://weather-app-pm.vercel.app/](https://weather-app-pm.vercel.app/)
+
 
 ## 📌 <span style="color:#29c4f6">SNAPSHOTS
 
